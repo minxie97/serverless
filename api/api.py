@@ -15,9 +15,11 @@ class handler(BaseHTTPRequestHandler):
             r = requests.get(url + dic["pokemon"])
             data = r.json()
         
+            pokedex = str(data)
+
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
-        self.wfile.write(str(data).encode())
+        self.wfile.write(pokedex.encode())
         
         return
