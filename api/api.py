@@ -12,7 +12,7 @@ class handler(BaseHTTPRequestHandler):
 
         if "pokemon" in dic:
             url = "https://pokeapi.co/api/v2/pokemon/"
-            r = requests.get(url, params=dic["pokemon"])
+            r = requests.get(url + dic["pokemon"])
             data = r.json()
             message = data["types"][0]["type"]["name"]
 
