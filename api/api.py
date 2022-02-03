@@ -16,8 +16,8 @@ class handler(BaseHTTPRequestHandler):
             data = r.json()
             chosen_poke = dic["pokemon"]
             type_1 = data["types"][0]["type"]["name"]
-            type_2 = data["types"][1]["type"]["name"]
-            if type_2:
+            if len(data["types"]) > 1:
+                type_2 = data["types"][1]["type"]["name"]
                 message = f"{chosen_poke} is a {type_1} and {type_2} typed Pokemon."
             else:
                 message = f"{chosen_poke} is a {type_1} typed Pokemon."
