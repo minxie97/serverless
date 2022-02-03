@@ -14,7 +14,7 @@ class handler(BaseHTTPRequestHandler):
             url = "https://pokeapi.co/api/v2/pokemon/"
             r = requests.get(url + dic["pokemon"])
             data = r.json()
-            chosen_poke = dic["pokemon"]
+            chosen_poke = dic["pokemon"].title()
             type_1 = data["types"][0]["type"]["name"]
             if len(data["types"]) > 1:
                 type_2 = data["types"][1]["type"]["name"]
