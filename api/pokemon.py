@@ -15,12 +15,14 @@ class handler(BaseHTTPRequestHandler):
             r = requests.get(url + dic["pokemon"])
             data = r.json()
             chosen_poke = dic["pokemon"].title()
-            type_1 = data["types"][0]["type"]["name"]
-            if len(data["types"]) > 1:
-                type_2 = data["types"][1]["type"]["name"]
+            type_1 = data["types"][0]["type"]["name"].title()
+            if len(data["types"]) == 2:
+                type_2 = data["types"][1]["type"]["name"].title()
                 message = f"{chosen_poke} is a {type_1} and {type_2} typed Pokemon."
-            else:
+            elif len(data["types"]) == 1:
                 message = f"{chosen_poke} is a {type_1} typed Pokemon."
+            else:
+                message = "That's not a Pokemon!"
 
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
