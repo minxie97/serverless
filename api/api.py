@@ -14,7 +14,13 @@ class handler(BaseHTTPRequestHandler):
             url = "https://pokeapi.co/api/v2/pokemon/"
             r = requests.get(url + dic["pokemon"])
             data = r.json()
-            message = data["types"][0]["type"]["name"]
+            chosen_poke = dic["pokemon"]
+            type_1 = data["types"][0]["type"]["name"]
+            type_2 = data["types"][1]["type"]["name"]
+            if type_2:
+                message = f"{chosen_poke} is a {type_1} and {type_2} typed Pokemon."
+            else:
+                message = f"{chosen_poke} is a {type_1} typed Pokemon."
 
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
