@@ -21,8 +21,6 @@ class handler(BaseHTTPRequestHandler):
                 message = f"{chosen_poke} is a {type_1} and {type_2} typed Pokemon."
             elif len(data["types"]) == 1:
                 message = f"{chosen_poke} is a {type_1} typed Pokemon."
-            else:
-                message = "That's not a Pokemon!"
 
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
