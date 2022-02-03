@@ -11,15 +11,14 @@ class handler(BaseHTTPRequestHandler):
         dic = dict(query_string_list)
 
         if "pokemon" in dic:
-            url = "https://pokeapi.co/api/v2/pokemon"
-            r = requests.get(url/dic["pokemon"])
+            url = "https://pokeapi.co/api/v2/pokemon/"
+            r = requests.get(url + dic["pokemon"])
             data = r.json()
-        
-            pokedex = str(data)
+            message = data["types"][0]["type"]["name"]
 
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
-        self.wfile.write(pokedex.encode())
+        self.wfile.write(str(message).encode())
         
         return
