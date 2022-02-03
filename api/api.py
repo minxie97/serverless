@@ -12,9 +12,8 @@ class handler(BaseHTTPRequestHandler):
 
         if "pokemon" in dic:
             url = "https://pokeapi.co/api/v2/pokemon"
-            r = requests.get(url + dic)
-            data = r.text
-            print(data)
+            r = requests.get(url + dic["pokemon"])
+            data = r.json()
         
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
